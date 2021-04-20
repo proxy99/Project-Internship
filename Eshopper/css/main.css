@@ -590,23 +590,20 @@ ul.sub-menu {
   padding-bottom: 45px;
 }
 
+.carousel-indicators {
+  margin-top: 20px;
+}
+
 .carousel-indicators li {
-  background: #C4C4BE;
+  background: var(--gray-10);
 }
 
 .carousel-indicators li.active {
-	  background: var(--orange);
+	  background: var(--red-2);
 }
 
 .item {
   padding-left: 100px;
-}
-
-
-.pricing {
-  position: absolute;
-  right: 40%;
-  top: 52%;
 }
 
 .girl {
@@ -617,11 +614,12 @@ ul.sub-menu {
   color: var(--black);
   font-family: var(--font-heading);
   font-size: 48px;
-  margin-top: 115px;
+  margin-top: 50px;
+  text-transform: capitalize;
 }
 
 .item h1 span {
-	color: var(--orange);
+	color: var(--red-2);
 }
 
 .item h2 {
@@ -781,6 +779,11 @@ h2.title:before{
   font-family: var(--font-sans);
   font-size: 12px;
   text-transform: uppercase;
+}
+
+.panel-body ul li a:hover {
+  color: var(--red-2);
+  transition: 0.3s;
 }
 
 .brands-name {
