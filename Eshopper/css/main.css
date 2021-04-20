@@ -505,7 +505,7 @@ ul.sub-menu {
 }
 
 .single-widget ul li a{
-	color: #8C8C88;
+	color: var(--gray-12);
 	font-family: var(--font-sans);
 	font-size: 14px;
 	font-weight: 300;
@@ -518,7 +518,7 @@ ul.sub-menu {
 
 .single-widget ul li a:hover{
 	background: none;
-  color: var(--orange);
+  color: var(--red-2);
   transition: var(--duration)
 }
 
@@ -804,8 +804,7 @@ h2.title:before{
 }
 
 .brands-name .nav-stacked li a:hover{
-  background-color: var(--white);
-  color: var(--gray-13);
+  color: var(--red-2);
 }
 
 .shipping {
@@ -917,7 +916,7 @@ h2.title {
 }
 
 .product-overlay {
-  background:var(--orange);
+  background: linear-gradient(#007CFF, #FF0000);
   top: 0;
   display: none;
   height: 0;
@@ -1034,7 +1033,7 @@ h2.title {
 .category-tab ul li a {
   border: 0 none;
   border-radius: 0;
-  color: #B3AFA8;
+  color: var(--gray-9);
   display: block;
   font-family: var(--font-sans);
   font-size: 14px;
