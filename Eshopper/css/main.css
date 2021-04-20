@@ -85,7 +85,9 @@ a#scrollUp i{
 
 
 .contactinfo ul li a:hover{
-	background:inherit;
+  background-color: var(--red);
+  color: var(--white);
+  transition: all 0.5s ease 0s;
 }
 
 
@@ -177,13 +179,13 @@ a#scrollUp i{
 }
 
 .usa:hover {
-	background:var(--orange);
+	background:var(--red);
 	color:var(--white);
-	border-color: var(--orange);
+	border-color: var(--red);
 }
 
 .usa:active, .usa.active {
-  background: none repeat scroll 0 0 var(--orange);
+  background: none repeat scroll 0 0 var(--red);
   box-shadow: inherit;
   outline: 0 none;
 }
@@ -194,7 +196,7 @@ a#scrollUp i{
 }
 
 .dropdown-menu  li  a:hover, .dropdown-menu  li  a:focus {
-  background-color: var(--orange);
+  background-color: var(--red);
   color: var(--white);
   font-family: var(--font-sans);
   text-decoration: none;
@@ -239,6 +241,7 @@ a#scrollUp i{
 .header-bottom {
   padding-bottom: 30px;
   padding-top: 30px;
+  background-color: var(--black);
 }
 
 .navbar-collapse.collapse{
@@ -255,7 +258,7 @@ a#scrollUp i{
 }
 
 .mainmenu ul li a {
-	color: var(--gray-13);
+	color: var(--white);
 	font-family: var(--font-sans);
 	font-size: 17px;
 	font-weight: 300;
@@ -337,7 +340,7 @@ ul.sub-menu {
 }
 
 .navbar-nav li ul.sub-menu li a:hover{
-    color: #FDB45E;
+    color: var(--red);
 }
 
 .fa-angle-down{
