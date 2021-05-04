@@ -416,7 +416,7 @@ ul.sub-menu {
   display: block;
   height: 61px;
   margin-bottom: 10px;
-  border: 2px solid #CCCCC6;
+  border: 2px solid var(--gray-4);
   border-radius: 3px;
 }
 
@@ -528,7 +528,7 @@ ul.sub-menu {
 
 .searchform input {
   border: 1px solid #DDDDDD;
-  color: #CCCCC6;
+  color: var(--gray-4);
   font-family: var(--font-sans);
   font-size: 14px;
   margin-top: 0;
@@ -642,19 +642,21 @@ ul.sub-menu {
 }
 
 .get {
-  background: var(--orange);
+  background: var(--red);
   border: 0 none;
   border-radius: 0;
-  color: var(--white);
+  color: var(--gray-4);
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 300;
-  margin-top: 23px;
+  margin-top: 19px;
 }
 
 
 .item button:hover {
-  background: var(--orange);
+  background: var(--red);
+  color: var(--black);
+  transition: var(--duration);
 }
 
 .control-carousel {
@@ -921,7 +923,7 @@ h2.title {
 }
 
 .product-overlay {
-  background: linear-gradient(#007CFF, #FF0000);
+  background: var(--orange);
   top: 0;
   display: none;
   height: 0;
@@ -1046,7 +1048,7 @@ h2.title {
 }
 
 .category-tab ul  li  a:hover{
-	background:var(--orange);
+	background:var(--red);
 	color:var(--white);
 }
 
@@ -1055,7 +1057,7 @@ h2.title {
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  background-color: var(--orange);
+  background-color: var(--red);
   border:0px;
   color: var(--white);
   cursor: default;
@@ -1084,14 +1086,15 @@ h2.title {
 }
 
 .recommended-item-control i {
-  background: none repeat scroll 0 0 var(--orange);
+  background: none repeat scroll 0 0 var(--red);
   color: var(--white);
   font-size: 20px;
   padding: 4px 10px;
 }
 
 .recommended-item-control i:hover {
-  background: #ccccc6;
+  background: var(--gray-4);
+  color: var(--black);
 }
 
 .recommended_items  h2 {
@@ -1241,7 +1244,7 @@ h2.title {
 }
 
 .item-control i:hover{
-	background:#ccccc6;
+	background:var(--gray-4);
 }
 
 .product-information {
