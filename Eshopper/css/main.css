@@ -239,6 +239,7 @@ a#scrollUp i{
 
 
 .header-bottom {
+  margin-bottom: 30px;
   padding-bottom: 30px;
   padding-top: 30px;
   background-color: var(--black);
@@ -539,7 +540,7 @@ ul.sub-menu {
 
 
 .searchform button {
-  background: var(--orange);
+  background: var(--red-2);
   border: medium none;
   border-radius: 0;
   margin-left: -5px;
@@ -892,7 +893,7 @@ h2.title {
 }
 
 .productinfo h2{
-	color: var(--orange);
+	color: var(--black);
 	font-family: var(--font-sans);
 	font-size: 24px;
 	font-weight: 700;
@@ -974,10 +975,10 @@ h2.title {
 
 
 .add-to-cart {
-  background:#F5F5ED;
+  background: var(--yellow);
   border: 0 none;
   border-radius: 0;
-  color: var(--gray-13);
+  color: var(--black);
   font-family: var(--font-sans);
   font-size: 15px;
   margin-bottom: 25px;
@@ -1093,8 +1094,8 @@ h2.title {
 }
 
 .recommended-item-control i:hover {
-  background: var(--gray-4);
-  color: var(--black);
+  background: var(--orange);
+  color: var(--white);
 }
 
 .recommended_items  h2 {
@@ -1210,19 +1211,6 @@ h2.title {
   width: 100%;
 }
 
-.view-product h3 {
-  background: var(--orange);
-  bottom: 0;
-  color: var(--white);
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 0;
-  padding: 8px 20px;
-  position: absolute;
-  right: 0;
-}
-
 #similar-product .carousel-inner .item{
 	padding-left:0px;
 }
@@ -1237,14 +1225,14 @@ h2.title {
   top: 35%;
 }
 .item-control i {
-  background: var(--orange);
+  background: var(--red);
   color: var(--white);
   font-size: 20px;
   padding: 5px 10px;
 }
 
 .item-control i:hover{
-	background:var(--gray-4);
+	background: var(--orange);
 }
 
 .product-information {
@@ -1315,10 +1303,10 @@ h2.title {
 
 
 .cart {
-  background: var(--orange);
+  background: var(--yellow);
   border: 0 none;
   border-radius: 0;
-  color: var(--white);
+  color: var(--black);
   font-family: var(--font-sans);
   font-size: 15px;
   margin-bottom: 10px;
@@ -1406,10 +1394,10 @@ h2.title {
 }
 
 #reviews button {
-  background: var(--orange);
+  background: var(--yellow);
   border: 0 none;
   border-radius: 0;
-  color: var(--white);
+  color: var(--black);
   font-family: var(--font-sans);
   font-size: 14px;
 }
