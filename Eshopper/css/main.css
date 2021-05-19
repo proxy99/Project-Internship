@@ -10,7 +10,6 @@
 
 body {
   font-family: var(--font-sans);
-  background: var(--grey-11);
   position: relative;
   font-weight:400px;
 }
