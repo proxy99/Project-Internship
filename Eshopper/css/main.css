@@ -10,7 +10,7 @@
 
 body {
   font-family: var(--font-sans);
-  background:;
+  background: var(--grey-11);
   position: relative;
   font-weight:400px;
 }
@@ -269,7 +269,7 @@ a#scrollUp i{
 
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
   background:none;
-  color: var(--red);
+  color: var(--red-2);
   transition: var(--duration);
 }
 
@@ -898,13 +898,6 @@ h2.title {
 	font-size: 24px;
 	font-weight: 700;
 }
-.product-overlay h2{
-	color: var(--white);
-	font-family: var(--font-sans);
-	font-size: 24px;
-	font-weight: 700;
-}
-
 
 .productinfo p{
   font-family: var(--font-sans);
@@ -922,57 +915,6 @@ h2.title {
 .productinfo{
  position:relative;
 }
-
-.product-overlay {
-  background: var(--orange);
-  top: 0;
-  display: none;
-  height: 0;
-  position: absolute;
-  transition: height 500ms ease 0s;
-  width: 100%;
-  display: block;
-  opacity:;
-}
-
-.single-products:hover .product-overlay {
-  display:block;
-  height:100%;
-}
-
-
-.product-overlay .overlay-content {
-  bottom: 0;
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
-}
-
-.product-overlay .add-to-cart {
-  background:var(--white);
-  border: 0 none;
-  border-radius: 0;
-  color: var(--orange);
-  font-family: var(--font-sans);
-  font-size: 15px;
-  margin-bottom: 25px;
-}
-
-.product-overlay .add-to-cart:hover {
-  background:var(--white);
-  color: var(--orange);
-}
-
-
-.product-overlay p{
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--white);
-}
-
-
 
 .add-to-cart {
   background: var(--yellow);
@@ -1290,7 +1232,7 @@ h2.title {
   width: 50px;
 }
 
-.product-information span lvar(--font-heading) {
+.product-information span {
   color: var(--gray-13);
   font-family: var(--font-sans);
   font-weight: 700;
@@ -1510,15 +1452,12 @@ h2.title {
   padding: 6px 25px;
 }
 
-.login-form lvar(--font-heading){
 
-}
-
-
-.login-form lvar(--font-heading) input {
-  border: medium none;
+.login-form input {
   display: inline-block;
+  border: medium none;
   height: 0;
+  font-family: var(--font-heading);
   margin-bottom: 0;
   outline: medium none;
   padding-left: 0;
@@ -1719,8 +1658,9 @@ h2.title {
 }
 
 
-.user_option lvar(--font-heading) {
+.user_option {
   color: var(--gray-13);
+  font-family: var(--font-heading);
   font-weight: normal;
   margin-left: 10px;
 }
@@ -1733,9 +1673,10 @@ h2.title {
   overflow: hidden;
 }
 
-.user_info lvar(--font-heading) {
+.user_info {
   color: var(--gray-13);
   display: block;
+  font-family: var(--font-heading);
   font-size: 15px;
   font-weight: normal;
 
@@ -1840,7 +1781,8 @@ h2.title {
   font-weight: normal;
 }
 
-.checkout-options .nav lvar(--font-heading) {
+.checkout-options .nav {
+  font-family: var(--font-heading);
   font-weight: normal;
 }
 
@@ -1932,7 +1874,7 @@ h2.title {
   padding: 15px 20px;
 }
 
-.order-message lvar(--font-heading) {
+.order-message {
   font-weight:300;
   color: var(--gray-13);
   font-family: var(--font-sans);
@@ -1954,8 +1896,9 @@ h2.title {
   margin-top: -25px
 }
 
-.payment-options span lvar(--font-heading) {
+.payment-options span {
   color: var(--gray-13);
+  font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 300;
   margin-right: 30px;
@@ -2358,11 +2301,12 @@ h2.title {
   margin-bottom: 45px
 }
 
-.replay-box lvar(--font-heading) {
+.replay-box {
   background:var(--orange);
   color: var(--white);
   margin-bottom: 15px;
   padding: 3px 15px;
+  font-family: var(--font-heading);
   float: left;
   font-weight: 400;
 }
@@ -2412,7 +2356,7 @@ h2.title {
   position: relative;
 }
 
-.blank-arrow lvar(--font-heading):after {
+.blank-arrow :after {
   content: "";
   position: absolute;
   width: auto;
