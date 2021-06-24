@@ -1,6 +1,6 @@
 <?php
 
-Class Home extends Controller {
+Class Blog extends Controller {
 
     public function index() {
 
@@ -53,6 +53,6 @@ Class Home extends Controller {
 
         $data['ROWS'] = $ROWS;
         $data['show_search'] = true;
-        $this->view("index", $data);
+        $this->view("blog", $data);
     }
 }

@@ -136,7 +136,6 @@ Class Admin extends Controller {
 
     function settings($type = '') {
 
-
         $User = $this->load_model('User');
         $Settings = new Settings();
 
@@ -157,18 +156,26 @@ Class Admin extends Controller {
         }
         elseif($type == "slider_images") {
 
+            $Slider = $this->load_model('slider');
             $data['action'] = "show";
+           
+            //read all slider images
+            $data['rows'] = $Slider->get_all();
+
             if(isset($_GET['action']) && $_GET['action'] == "add") {
                 $data['action'] = "add";
-                
+
                 //if new row was posted
                 if(count($_POST) > 0) {
-                    show($_POST);
-                    show($_FILES);
+                    
+                    $Image = $this->load_model('Image');
+                    $data['errors'] = $Slider->create($_POST, $_FILES, $Image);
+
                     $data['POST'] = $_POST;
-                    // header(("Location: " . ROOT . "admin/settings/slider_images"));
-                    // die;
+                    header(("Location: " . ROOT . "admin/settings/slider_images"));
+                    die;
                 }
+
             }
             elseif(isset($_GET['action']) && $_GET['action'] == "edit") {
                 $data['action'] = "edit";
