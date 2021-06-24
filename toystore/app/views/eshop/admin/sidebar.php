@@ -19,44 +19,41 @@
                 </li>
 
                 <li class="sub-menu">
-                    <a href="<?=ROOT?>admin/products">
+                    <a <?=(isset($current_page) && $current_page == "products") ? ' class="active" ' : ''; ?> href="<?=ROOT?>admin/products">
                     <i class="fa fa-barcode"></i>
                         <span>Product</span>
                     </a>
-                    <ul class="sub">
-                        <li><a href="<?=ROOT?>admin/products">View Products</a></li>
-                    </ul>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="<?=ROOT?>admin/categories">
+                    <a <?=(isset($current_page) && $current_page == "categories") ? ' class="active" ' : ''; ?> href="<?=ROOT?>admin/categories">
                     <i class="fa fa-list-alt"></i>
                         <span>Categories</span>
                     </a>
-                    <ul class="sub">
-                    <li><a href="<?=ROOT?>admin/categories">View Categories</a></li>
-                    </ul>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="<?=ROOT?>admin/orders">
+                    <a <?=(isset($current_page) && $current_page == "orders") ? ' class="active" ' : ''; ?> href="<?=ROOT?>admin/orders">
                     <i class="fa fa-reorder"></i>
                         <span>Orders</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="<?=ROOT?>admin/products" >
+                    <a <?=(isset($current_page) && $current_page == "settings") ? ' class="active" ' : ''; ?> href="<?=ROOT?>admin/settings" >
                     <i class="fa fa-cogs"></i>
                         <span>Settings</span>
                     </a>
                     <ul class="sub">
                         <li><a href="<?=ROOT?>admin/settings/slider_images">Slider Images</a></li>
                     </ul>
+                    <ul class="sub">
+                        <li><a href="<?=ROOT?>admin/settings/socials">Social Links / Contacts</a></li>
+                    </ul>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="<?=ROOT?>admin/products" >
+                    <a <?=(isset($current_page) && $current_page == "users") ? ' class="active" ' : ''; ?> href="<?=ROOT?>admin/users" >
                     <i class="fa fa-user"></i>
                         <span>Users</span>
                     </a>

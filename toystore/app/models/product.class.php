@@ -93,7 +93,7 @@ Class Product {
         $arr['price'] = $data->price;
         $images_string = "";
 
-        if(!preg_match("/^[a-zA-Z ]+$/", trim($arr['description']))) {
+        if(!preg_match("/^[a-zA-Z 0-9._\-,]+$/", trim($arr['description']))) {
             $_SESSION['error'] .= "Please enter a valid description for this product!<br>";
         }
 
@@ -138,6 +138,7 @@ Class Product {
         if(!isset($_SESSION['error']) || $_SESSION['error'] == "") {
             $DB = Database::newInstance();
             $query = "update products set description = :description, quantity = :quantity, category = :category, price = :price $images_string where id = :id limit 1";
+            
             $DB->write($query,$arr);
         }
     }

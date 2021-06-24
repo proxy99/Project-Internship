@@ -13,7 +13,6 @@ jQuery(function($) {'use strict',
 
 });
 
-
 // Google Map Customization
 (function(){
 

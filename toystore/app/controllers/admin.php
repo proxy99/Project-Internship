@@ -12,6 +12,7 @@ Class Admin extends Controller {
         }
 
         $data['page_title'] = "Admin";
+        $data['current_page'] = "dashboard";
         $this->view("admin/index", $data);
     }
 
@@ -33,7 +34,8 @@ Class Admin extends Controller {
         $data['tbl_rows']= $tbl_rows;
         $data['categories']= $categories;
         
-        $data['page_title'] = "Admin";
+        $data['page_title'] = "Admin - Categories";
+        $data['current_page'] = "categories";
         $this->view("admin/categories", $data);
     }
 
@@ -58,7 +60,134 @@ Class Admin extends Controller {
         $data['tbl_rows']= $tbl_rows;
         $data['categories']= $categories;
 
-        $data['page_title'] = "Admin";
+        $data['page_title'] = "Admin - Products";
+        $data['current_page'] = "products";
         $this->view("admin/products", $data);
+    }
+
+    public function orders() {
+        $User = $this->load_model('User');
+        $Order = $this->load_model('Order');
+
+        $user_data = $User->check_login(true, ["admin"]);
+
+        if(is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+
+        $orders = $Order->get_all_orders();
+
+        if(is_array($orders)) {
+            foreach($orders as $key => $row) {
+
+                $details = $Order->get_order_details($row->id);
+                $orders[$key]->grand_total = 0;
+
+                if(is_array($orders)) {
+                    $totals = array_column($details, "total");
+                    $grand_total = array_sum($totals);
+                    $orders[$key]->grand_total = $grand_total;
+                }
+
+                $orders[$key]->details = $details;
+
+                $user = $User->get_user($row->user_url);
+                $orders[$key]->user = $user;
+            }
+        }
+
+        $data['page_title'] = "Profile";
+        $data['orders'] = $orders;
+
+        $data['page_title'] = "Admin - Orders";
+        $data['current_page'] = "orders";
+        $this->view("admin/orders", $data);
+    }
+
+    function users($type = "customers") {
+        $User = $this->load_model('User');
+        $Order = $this->load_model('Order');
+
+        $user_data = $User->check_login(true, ["admin"]);
+
+        if(is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+
+        if($type == "admins") {
+            $users = $User->get_admins();
+        }
+        else {
+            $users = $User->get_customers();
+        }
+
+        if(is_array($users)) {
+            foreach($users as $key => $row) {
+                $orders_num = $Order->get_orders_count($row->url_address);
+                $users[$key]->orders_count = $orders_num;
+            }
+        }
+
+        $data['users'] = $users;
+        $data['page_title'] = "Admin - $type";
+        $data['current_page'] = "users";
+        $this->view("admin/users",$data);
+    }
+
+    function settings($type = '') {
+
+
+        $User = $this->load_model('User');
+        $Settings = new Settings();
+
+        $user_data = $User->check_login(true, ["admin"]);
+        if(is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+
+        // select the right page
+        if($type == "socials") {
+            if(count($_POST) > 0) {
+                $errors = $Settings->save_settings($_POST);
+                header(("Location: " . ROOT . "admin/settings/socials"));
+                die;
+            }
+
+            $data['settings'] = $Settings->get_all_settings();            
+        }
+        elseif($type == "slider_images") {
+
+            $data['action'] = "show";
+            if(isset($_GET['action']) && $_GET['action'] == "add") {
+                $data['action'] = "add";
+                
+                //if new row was posted
+                if(count($_POST) > 0) {
+                    show($_POST);
+                    show($_FILES);
+                    $data['POST'] = $_POST;
+                    // header(("Location: " . ROOT . "admin/settings/slider_images"));
+                    // die;
+                }
+            }
+            elseif(isset($_GET['action']) && $_GET['action'] == "edit") {
+                $data['action'] = "edit";
+                $data['id'] = null;
+                if(isset($_GET['id'])) {
+                    $data['id'] = $_GET['id'];
+                }
+            }
+            elseif(isset($_GET['action']) && $_GET['action'] == "delete") {
+
+            }
+            elseif(isset($_GET['action']) && $_GET['action'] == "delete_confirmed") {
+
+            }
+        }
+
+        $data['type'] = $type;
+        $data['page_title'] = "Admin - $type";
+        $data['current_page'] = "settings";
+        $this->view("admin/settings",$data);
     }
 }

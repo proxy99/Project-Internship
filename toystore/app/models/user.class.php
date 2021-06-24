@@ -110,8 +110,54 @@ Class User {
     
     public function get_user($url) {
 
+        $db = Database::newInstance();
+        $array = false;
+
+        $arr['url'] = addslashes($url);
+        $query = "select * from users where url_address = :url limit 1";
+
+        $result = $db->read($query,$arr);
+
+        if(is_array($result)) {
+            return $result[0];
+        }
+
+        return false;
     }
 
+    public function get_customers() {
+
+        $db = Database::newInstance();
+        $array = false;
+
+        $arr['rank'] = "customer";
+        $query = "select * from users where rank = :rank";
+
+        $result = $db->read($query,$arr);
+
+        if(is_array($result)) {
+            return $result;
+        }
+
+        return false;
+    }
+
+    public function get_admins() {
+
+        $db = Database::newInstance();
+        $array = false;
+
+        $arr['rank'] = "admin";
+        $query = "select * from users where rank = :rank";
+
+        $result = $db->read($query,$arr);
+
+        if(is_array($result)) {
+            return $result;
+        }
+
+        return false;
+    }
     
     private function get_random_string_max($length) {
         $array = array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');

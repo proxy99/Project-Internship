@@ -8,14 +8,8 @@
                 </a>
                 <h2 class="product-price">$<?= $data->price ?></h2>
                 <p class="product-title"><?= $data->description ?></p>
-                <button class="btn btn-default add-to-cart" type="button"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                <a href="<?=ROOT?>add_to_cart/<?=$data->id?>" class="btn btn-default add-to-cart" type="button"><i class="fa fa-shopping-cart"></i>Add to cart</a>
             </div>		
-        </div>
-        <div class="choose">
-            <ul class="nav nav-pills nav-justified">
-                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-            </ul>
         </div>
     </div>
 </div>
