@@ -131,7 +131,10 @@ Class Order extends Controller {
 
         $db = Database::newInstance();
 
-        $query = "select * from orders order by id desc limit 100";
+        $limit = 10;
+        $offset = Page::get_offset($limit);
+        
+        $query = "select * from orders order by id desc limit $limit offset $offset";
         $orders = $db->read($query);
 
         return $orders;

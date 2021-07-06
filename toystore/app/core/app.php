@@ -9,6 +9,7 @@ Class App {
     public function __construct() {
 
         $url = $this -> parseURL();
+        $url[0] = str_replace("-","_", $url[0]);
 
         if(file_exists("../app/controllers/" . strtolower($url[0]) . ".php")){
 
@@ -21,7 +22,7 @@ Class App {
 
         if(isset($url[1])) {
             $url[1] = strtolower($url[1]);
-            if(method_exists($this->controller, $url[1])) {
+            if(method_exists($this->controller, $url[1]) && is_callable([$this->controller, $url[1]])) {
                 $this->method = $url[1];
                 unset($url[1]);
             }

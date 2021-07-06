@@ -26,8 +26,12 @@ Class Admin extends Controller {
         }
 
         $DB = Database::newInstance();
-        $categories_all = $DB->read("select * from categories order by id desc");
-        $categories = $DB->read("select * from categories where disabled = 0 order by id desc");
+
+        $limit = 5;
+        $offset = Page::get_offset($limit);
+        $categories_all = $DB->read("select * from categories order by id desc limit $limit offset $offset");
+
+        $categories = $DB->read("select * from categories where disabled = 0 order by id desc ");
 
         $category = $this->load_model("Category");
         $tbl_rows = $category->make_table($categories_all);
@@ -49,7 +53,11 @@ Class Admin extends Controller {
         }
 
         $DB = Database::newInstance();
-        $products = $DB->read("select * from products order by id desc");
+
+        $limit = 5;
+        $offset = Page::get_offset($limit);
+
+        $products = $DB->read("select * from products order by id desc limit $limit offset $offset");
 
         $categories = $DB->read("select * from categories where disabled = 0 order by id desc");
 
@@ -196,5 +204,141 @@ Class Admin extends Controller {
         $data['page_title'] = "Admin - $type";
         $data['current_page'] = "settings";
         $this->view("admin/settings",$data);
+    }
+
+    function messages($type = '') {
+
+        $type = 'Messages';
+
+        $User = $this->load_model('User');
+        $Message = $this->load_model('Message');
+
+        $user_data = $User->check_login(true, ["admin"]);
+
+        if(is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+
+        $mode = "read";
+        if(isset($_GET['delete'])) {
+            $mode = "delete";
+        }
+
+        if(isset($_GET['delete_confirmed'])) {
+            $mode = "delete_confirmed";
+            $id = $_GET["delete_confirmed"];
+            $messages = $Message->delete($id);
+        }
+
+        if($mode == "delete") {
+            $id = $_GET['delete'];
+            $messages = $Message->get_one($id);
+        }
+        else {
+            $messages = $Message->get_all();
+        }
+
+        $data['mode'] = $mode;
+        $data['messages'] = $messages;
+        $data['page_title'] = "Admin - $type";
+        $data['current_page'] = "messages";
+        $this->view("admin/messages",$data);
+    }
+
+    function blogs($type = '') {
+
+        $type = 'Blog Posts';
+
+        $User = $this->load_model('User');
+        $post_class = $this->load_model('post');
+        $image_class = $this->load_model('Image');
+
+        $user_data = $User->check_login(true, ["admin"]);
+
+        if(is_object($user_data)) {
+            $data['user_data'] = $user_data;
+        }
+
+        $mode = "read";
+        if(isset($_GET['delete'])) {
+            $mode = "delete";
+        }
+
+        if(isset($_GET['add_new'])) {
+            $mode = "add_new";
+        }
+
+        if(isset($_GET['edit'])) {
+            $mode = "edit";
+        }
+
+        if(isset($_GET['delete_confirmed'])) {
+            $mode = "delete_confirmed";
+            $id = $_GET["delete_confirmed"];
+            $posts = $post_class->delete($id);
+        }
+
+        if($mode == "edit") {
+            $id = $_GET['edit'];
+            $blogs = $post_class->get_one($id);
+            
+            $data['POST'] = (array)$blogs;
+
+        }
+        elseif($mode == "delete") {
+            $id = $_GET['delete'];
+            $blogs = $post_class->get_one($id);
+
+            if($blogs) {
+
+                if(file_exists($blogs->image)) {
+                    $blogs->image = $image_class->get_thumb_post($blogs->image);
+                }
+
+                $blogs->user_data = $User->get_user($blogs->user_url);
+            }
+            
+            $data['POST'] = (array)$blogs;
+        }
+        else {
+            $blogs = $post_class->get_all();
+
+            if($blogs) {
+                foreach ($blogs as $key => $row) {
+                    if(file_exists($blogs[$key]->image)) {
+                        $blogs[$key]->image = $image_class->get_thumb_post($blogs[$key]->image);
+                    }
+
+                    $blogs[$key]->user_data = $User->get_user($blogs[$key]->user_url);
+                }
+            }
+        }
+
+        //if something was posted
+        if(count($_POST) > 0) {
+            $post = $this->load_model('post');
+            $image_class = $this->load_model('image');
+
+            if($mode == "edit") {
+                $post_class->edit($_POST, $_FILES, $image_class);
+            }
+            else {
+                $post_class->create($_POST, $_FILES, $image_class);
+            }
+
+            if(isset($_SESSION['error']) && $_SESSION['error'] != "") {
+                $data['errors'] = $_SESSION['error'];
+                $data['POST'] = $_POST;
+            }
+            else {
+                redirect("admin/blogs");
+            }
+        }
+
+        $data['mode'] = $mode;
+        $data['blogs'] = $blogs;
+        $data['page_title'] = "Admin - $type";
+        $data['current_page'] = "blogs";
+        $this->view("admin/blogs",$data);
     }
 }

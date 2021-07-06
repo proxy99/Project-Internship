@@ -17,13 +17,8 @@
 						<?php endforeach; ?>
 						<?php endif; ?>
 						
-						<br style="clear: both;">
-						<ul class="pagination">
-							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">&raquo;</a></li>
-						</ul>
+						<?php Page::show_links()?>
+						
 					</div><!--features_items-->
 				</div>
 			</div>

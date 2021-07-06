@@ -31,7 +31,13 @@
                     <?php foreach($settings as $setting): ?>
                         <tr>
                             <td><?=ucwords(str_replace("_"," ",$setting->setting))?></td>
-                            <td><input placeholder="<?=ucwords(str_replace("_"," ",$setting->setting))?>" name="<?=$setting->setting?>" class="form-control" type="text" value="<?=$setting->value?>" /></td>
+                            <td>
+                                <?php if($setting->type == "" || $setting->type == "text"): ?>
+                                    <input placeholder="<?=ucwords(str_replace("_"," ",$setting->setting))?>" name="<?=$setting->setting?>" class="form-control" type="text" value="<?=$setting->value?>" />
+                                <?php elseif($setting->type == "textarea"): ?>
+                                    <textarea placeholder="<?=ucwords(str_replace("_"," ",$setting->setting))?>" name="<?=$setting->setting?>" class="form-control"><?=$setting->value?></textarea>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>

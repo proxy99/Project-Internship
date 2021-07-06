@@ -30,67 +30,72 @@
         </tr>
     </thead>
     <tbody onclick="show_details(event)">
-        <?php foreach($orders as $order): ?>
-            <tr style="position: relative;">
-                <td style="color: blue;"><?=$order->id?></td>
-                <td style="color: blue;"><a href="<?=ROOT?>profile/<?=$order->user->url_address?>"><?=$order->user->name?></a></td>
-                <td style="color: red;"><?=date("jS m Y H:i a",strtotime($order->date))?></td>
-                <td style="color: #85BB65;">$<?=$order->total?></td>
-                <td><?=$order->delivery_address?></td>
-                <td style="color: orange;"><?=$order->state?></td>
-                <td><?=$order->mobile_phone?></td>
-                <td>
-                    <i class="fa fa-arrow-down"></i>
-                    <div class="js-order-details details hide">
-                        <a style="float:right; cursor: pointer;">Close</a>
-                        <h3><span style="font-weight: bold">Order</span> <span style="color: blue">#<?=$order->id?></span></h3>
-                        <h4><span style="font-weight: bold">Customer:</span> <span style="color: red"><?=$order->user->name?></span></h4>
-                        
-                        <!-- Order Details -->
-                        <div style="display: flex;">
-                            <table class="table" style="flex: 1; margin: 10px;"> 
-                                <tr><th>Country</th><td><?=$order->country?></td></tr>
-                                <tr><th>State</th><td><?=$order->state?></td></tr>
-                                <tr><th>Delivery Address</th><td><?=$order->delivery_address?></td></tr>
-                            </table>
-                            <table class="table" style="flex: 1; margin: 10px;"> 
-                                <tr><th>Home Phone</th><td><?=$order->home_phone?></td></tr>
-                                <tr><th>Mobile Phone</th><td><?=$order->mobile_phone?></td></tr>
-                                <tr><th>Date</th><td><?=$order->date?></td></tr>
-                            </table>
-                        </div>
-                        <hr>
-                        <h4>Order Summary</h4>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Quantity</th>
-                                    <th>Description</th>
-                                    <th>Amount</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <?php if(isset($order->details) && is_array($order->details)): ?>
-                                <?php foreach($order->details as $detail): ?>
+
+        <?php if(isset($orders) && is_array($orders)):?>
+            <?php foreach($orders as $order): ?>
+                <tr style="position: relative;">
+                    <td style="color: blue;"><?=$order->id?></td>
+                    <td style="color: blue;"><a href="<?=ROOT?>profile/<?=$order->user->url_address?>"><?=$order->user->name?></a></td>
+                    <td style="color: red;"><?=date("jS m Y H:i a",strtotime($order->date))?></td>
+                    <td style="color: #85BB65;">$<?=$order->total?></td>
+                    <td><?=$order->delivery_address?></td>
+                    <td style="color: orange;"><?=$order->state?></td>
+                    <td><?=$order->mobile_phone?></td>
+                    <td>
+                        <i class="fa fa-arrow-down"></i>
+                        <div class="js-order-details details hide">
+                            <a style="float:right; cursor: pointer;">Close</a>
+                            <h3><span style="font-weight: bold">Order</span> <span style="color: blue">#<?=$order->id?></span></h3>
+                            <h4><span style="font-weight: bold">Customer:</span> <span style="color: red"><?=$order->user->name?></span></h4>
+                            
+                            <!-- Order Details -->
+                            <div style="display: flex;">
+                                <table class="table" style="flex: 1; margin: 10px;"> 
+                                    <tr><th>Country</th><td><?=$order->country?></td></tr>
+                                    <tr><th>State</th><td><?=$order->state?></td></tr>
+                                    <tr><th>Delivery Address</th><td><?=$order->delivery_address?></td></tr>
+                                </table>
+                                <table class="table" style="flex: 1; margin: 10px;"> 
+                                    <tr><th>Home Phone</th><td><?=$order->home_phone?></td></tr>
+                                    <tr><th>Mobile Phone</th><td><?=$order->mobile_phone?></td></tr>
+                                    <tr><th>Date</th><td><?=$order->date?></td></tr>
+                                </table>
+                            </div>
+                            <hr>
+                            <h4>Order Summary</h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Quantity</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <?php if(isset($order->details) && is_array($order->details)): ?>
                                     <tbody>
-                                        <tr>
-                                            <td><?=$detail->qty?></td>
-                                            <td><?=$detail->description?></td>
-                                            <td><?=$detail->amount?></td>
-                                            <td><?=$detail->total?></td>
-                                        </tr>
+                                        <?php foreach($order->details as $detail): ?>
+                                            <tr>
+                                                <td><?=$detail->qty?></td>
+                                                <td><?=$detail->description?></td>
+                                                <td><?=$detail->amount?></td>
+                                                <td><?=$detail->total?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
-                                <?php endforeach; ?>
-                                
-                            <?php else: ?>
-                                <div>No order details were found for this order</div>
-                            <?php endif; ?>
-                        </table>
-                        <h3 class="pull-right">Grand Total: <span style="color: #85BB65">$<?=$order->grand_total?></span></h3>
-                    </div>
-                </td>
-            </tr>
-        <?php endforeach; ?>
+                                    
+                                <?php else: ?>
+                                    <div>No order details were found for this order</div>
+                                <?php endif; ?>
+                            </table>
+                            <h3 class="pull-right">Grand Total: <span style="color: #85BB65">$<?=$order->grand_total?></span></h3>
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
+
+        <tr><td colspan="8"><?php Page::show_links() ?></td></tr>
     </tbody>
 </table>
 

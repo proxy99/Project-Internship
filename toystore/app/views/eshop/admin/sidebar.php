@@ -40,6 +40,20 @@
                 </li>
 
                 <li class="sub-menu">
+                    <a <?=(isset($current_page) && $current_page == "messages") ? ' class="active" ' : ''; ?> href="<?=ROOT?>admin/messages">
+                    <i class="fa fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a <?=(isset($current_page) && $current_page == "blogs") ? ' class="active" ' : ''; ?> href="<?=ROOT?>admin/blogs">
+                    <i class="fa fa-list"></i>
+                        <span>Blog Posts</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
                     <a <?=(isset($current_page) && $current_page == "settings") ? ' class="active" ' : ''; ?> href="<?=ROOT?>admin/settings" >
                     <i class="fa fa-cogs"></i>
                         <span>Settings</span>

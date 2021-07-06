@@ -2362,7 +2362,7 @@ h2.title {
   margin-bottom: 45px
 }
 
-.replay-box {
+.replay-box label {
   background:var(--orange);
   color: var(--white);
   margin-bottom: 15px;

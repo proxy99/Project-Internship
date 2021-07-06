@@ -4,6 +4,10 @@ Class Blog extends Controller {
 
     public function index() {
 
+        // Pagination formula (number of products in shop page)
+        $limit = 3;
+        $offset = Page::get_offset($limit);
+
         // Check if its a search
         $search = false;
         if(isset($_GET['find'])) {
@@ -22,34 +26,25 @@ Class Blog extends Controller {
         $DB = Database::newInstance();
 
         if($search) {
-            $arr['description'] = "%" . $find ."%";
-            $ROWS = $DB->read("select * from products where description like :description", $arr);
+            $arr['title'] = "%" . $find ."%";
+            $ROWS = $DB->read("select * from blogs where title like :title limit $limit offset $offset ", $arr);
         }
         else {
-            $ROWS = $DB->read("select * from products");
+            $ROWS = $DB->read("select * from blogs order by id desc limit $limit offset $offset ");
         }
 
-        $data['page_title'] = "Home";
+        $data['page_title'] = "Blog";
 
         if($ROWS) {
             foreach ($ROWS as $key => $row) {
-                $ROWS[$key]->image = $image_class->get_thumb_post($ROWS[$key]->image);
+                $ROWS[$key]->image = $image_class->get_thumb_blog_post($ROWS[$key]->image);
+                $ROWS[$key]->user_data = $User->get_user($ROWS[0]->user_url);
             }
         }
 
         //get all categories
         $category = $this->load_model('category');
         $data['categories'] = $category->get_all();
-
-        //get all slider content
-        $Slider = $this->load_model('Slider');
-        $data['slider'] = $Slider->get_all();
-
-        if($data['slider']) {
-            foreach ($data['slider'] as $key => $row) {
-                $data['slider'][$key]->image = $image_class->get_thumb_post($data['slider'][$key]->image,481,441);
-            }
-        }
 
         $data['ROWS'] = $ROWS;
         $data['show_search'] = true;

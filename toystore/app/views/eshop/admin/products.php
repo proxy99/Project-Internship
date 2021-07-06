@@ -11,6 +11,7 @@
         border-radius: 15px;
         position: absolute;
         padding: 6px;
+        z-index: 100;
     }
 
     .show {
@@ -238,8 +239,11 @@
                 </tr>
                 </thead>
                 <tbody id="table_body">
+
                     <?= $tbl_rows ?>
-                </tbody>
+
+                <tr><td colspan="8"><?php Page::show_links() ?></td></tr>
+                </tbody>              
             </table>
         </div><!-- /content-panel -->
     </div><!-- /col-md-12 -->
